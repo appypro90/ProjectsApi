@@ -33,8 +33,8 @@ namespace Business.Tests
         {
             ProjectName = "Project 1",
             Description = "Description 1",
-            StartDate = DateTime.Now,
-            EndDate = DateTime.Now.AddDays(1),
+            StartDate = DateTime.Now.ToString(),
+            EndDate = DateTime.Now.AddDays(1).ToString(),
         };
 
         private ProjectListVm _projectListVm = new ProjectListVm
@@ -120,7 +120,12 @@ namespace Business.Tests
             // Arrange
             var project = _projectDetailsVm;
             var projectEntity = _project;
+            var userId = "user1";
 
+            _userRepositoryMock.Setup(u => u.GetAllAsync()).ReturnsAsync(new List<User>
+            {
+                new User { Id = userId }
+            });
             _mapperMock.Setup(m => m.Map<Project>(project)).Returns(projectEntity);
 
             // Act

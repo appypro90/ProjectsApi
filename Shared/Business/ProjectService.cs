@@ -37,6 +37,7 @@ namespace Business
         public async Task UpdateProjectAsync(ProjectDetailsVm project)
         {
             var projectEntity = _mapper.Map<Project>(project);
+            projectEntity.UserId = (await _userRepository.GetAllAsync()).First().Id;
             _projectRepository.Update(projectEntity);
             await _unitOfWork.CompleteAsync();
         }

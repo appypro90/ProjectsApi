@@ -4,8 +4,8 @@ namespace Entities.Models
 {
     public class Project: BaseModel
     {
-        public required string ProjectName { get; set; }
-        public required string Description { get; set; }
+        public string ProjectName { get; set; }
+        public string Description { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public ProjectStatus Status { get; set; }
